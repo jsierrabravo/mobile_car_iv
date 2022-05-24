@@ -49,18 +49,25 @@ class _CounterState extends State<Counter> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            onPressed: () => setState(() => _counter--),
+            backgroundColor: Colors.red,
+            child: const Icon(Icons.arrow_circle_down_rounded),
+            tooltip: 'Decrement Counter',
+          ),
+          const SizedBox(width: 15),
+          FloatingActionButton(
+            onPressed: () => setState(() => _counter=0),
+            backgroundColor: Colors.grey,
+            child: const Icon(Icons.restart_alt_rounded),
+            tooltip: 'Decrement Counter',
+          ),
+          const SizedBox(width: 15),
+          FloatingActionButton(
             onPressed: () => setState(() => _counter++),
             backgroundColor: Colors.green,
             child: const Icon(Icons.arrow_circle_up_outlined),
             tooltip: 'Increment Counter',
           ),
-          const SizedBox(width: 15),
-          FloatingActionButton(
-            onPressed: () => setState(() => _counter--),
-            backgroundColor: Colors.red,
-            child: const Icon(Icons.arrow_circle_down_rounded),
-            tooltip: 'Decrement Counter',
-          )
         ],
       ),
 
