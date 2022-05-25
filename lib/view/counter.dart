@@ -10,6 +10,10 @@ class Counter extends StatefulWidget {
 class _CounterState extends State<Counter> {
 
   int _counter = 0;
+
+  void increaseCounter() => setState(() => _counter++);
+  void decreaseCounter() => setState(() => _counter--);
+  void resetCounter() => setState(() => _counter=0);
   
   @override
   Widget build(BuildContext context) {
@@ -45,32 +49,56 @@ class _CounterState extends State<Counter> {
         )
       ),
       
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () => setState(() => _counter--),
-            backgroundColor: Colors.red,
-            child: const Icon(Icons.arrow_circle_down_rounded),
-            tooltip: 'Decrement Counter',
-          ),
-          const SizedBox(width: 15),
-          FloatingActionButton(
-            onPressed: () => setState(() => _counter=0),
-            backgroundColor: Colors.grey,
-            child: const Icon(Icons.restart_alt_rounded),
-            tooltip: 'Decrement Counter',
-          ),
-          const SizedBox(width: 15),
-          FloatingActionButton(
-            onPressed: () => setState(() => _counter++),
-            backgroundColor: Colors.green,
-            child: const Icon(Icons.arrow_circle_up_outlined),
-            tooltip: 'Increment Counter',
-          ),
-        ],
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+
+      floatingActionButton: FloatingCustomButton(
+        increaseCounter: increaseCounter,
+        decreaseCounter: decreaseCounter,
+        resetCounter: resetCounter,
       ),
 
+    );
+  }
+}
+
+class FloatingCustomButton extends StatelessWidget {
+
+  final Function increaseCounter;
+  final Function decreaseCounter;
+  final Function resetCounter;
+
+  const FloatingCustomButton({
+    Key? key,
+    required this.increaseCounter,
+    required this.decreaseCounter,
+    required this.resetCounter,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        FloatingActionButton(
+          onPressed: () => increaseCounter(),
+          backgroundColor: Colors.red,
+          child: const Icon(Icons.arrow_circle_down_rounded),
+          tooltip: 'Decrement Counter',
+        ),
+        FloatingActionButton(
+          onPressed: () => resetCounter(),
+          backgroundColor: Colors.grey,
+          child: const Icon(Icons.replay_outlined),
+          tooltip: 'Decrement Counter',
+        ),
+        FloatingActionButton(
+          onPressed: () => decreaseCounter(),
+          backgroundColor: Colors.green,
+          child: const Icon(Icons.arrow_circle_up_outlined),
+          tooltip: 'Increment Counter',
+        ),
+      ],
     );
   }
 }
