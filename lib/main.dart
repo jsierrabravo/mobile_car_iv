@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:myfirstproject/view/counter.dart';
+import 'package:myfirstproject/view/list_view.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp ({Key? key}) : super(key: key);
-  
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Counter(),
-    ); 
+      title: 'Material App',
+      home: ListViewCustom(),
+    );
   }
 }
-

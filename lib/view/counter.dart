@@ -81,7 +81,7 @@ class FloatingCustomButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         FloatingActionButton(
-          onPressed: () => increaseCounter(),
+          onPressed: () => decreaseCounter(),
           backgroundColor: Colors.red,
           child: const Icon(Icons.arrow_circle_down_rounded),
           tooltip: 'Decrement Counter',
@@ -90,10 +90,10 @@ class FloatingCustomButton extends StatelessWidget {
           onPressed: () => resetCounter(),
           backgroundColor: Colors.grey,
           child: const Icon(Icons.replay_outlined),
-          tooltip: 'Decrement Counter',
+          tooltip: 'Reset Counter',
         ),
         FloatingActionButton(
-          onPressed: () => decreaseCounter(),
+          onPressed: () => increaseCounter(),
           backgroundColor: Colors.green,
           child: const Icon(Icons.arrow_circle_up_outlined),
           tooltip: 'Increment Counter',
