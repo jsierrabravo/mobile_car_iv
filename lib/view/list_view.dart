@@ -1,162 +1,65 @@
 import 'package:flutter/material.dart';
-import '../database/database.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-class ListViewCustom extends StatelessWidget {
+class ListViewCustom extends StatefulWidget {
  
-  ListViewCustom({Key? key}) : super(key: key);
+  const ListViewCustom({Key? key}) : super(key: key);
 
-  final firebaseData = CallFirebase().callDatabase();
+  @override
+  State<ListViewCustom> createState() => _ListViewCustomState();
+}
 
-  final List<Map<String, String>> _games = [
-    {
-      "image": 'https://pics.filmaffinity.com/Steins_Gate_Serie_de_TV-571124347-large.jpg',
-      "name": 'Roblox',
-    },
-    {
-      "image": 'https://articles-images.sftcdn.net/wp-content/uploads/sites/2/2015/10/silent1.jpg',
-      "name": 'Silent Hills',
-    },
-    {
-      "image": 'https://media.vandal.net/i/1200x630/11-2021/2021111012201145_1.jpg',
-      "name": 'Forza Horizon 5',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://www.lavanguardia.com/files/og_thumbnail/uploads/2021/09/02/6130d99519f60.png',
-      "name": 'Roblox',
-    },
-    {
-      "image": 'https://articles-images.sftcdn.net/wp-content/uploads/sites/2/2015/10/silent1.jpg',
-      "name": 'Silent Hills',
-    },
-    {
-      "image": 'https://media.vandal.net/i/1200x630/11-2021/2021111012201145_1.jpg',
-      "name": 'Forza Horizon 5',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://www.lavanguardia.com/files/og_thumbnail/uploads/2021/09/02/6130d99519f60.png',
-      "name": 'Roblox',
-    },
-    {
-      "image": 'https://articles-images.sftcdn.net/wp-content/uploads/sites/2/2015/10/silent1.jpg',
-      "name": 'Silent Hills',
-    },
-    {
-      "image": 'https://media.vandal.net/i/1200x630/11-2021/2021111012201145_1.jpg',
-      "name": 'Forza Horizon 5',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://www.lavanguardia.com/files/og_thumbnail/uploads/2021/09/02/6130d99519f60.png',
-      "name": 'Roblox',
-    },
-    {
-      "image": 'https://articles-images.sftcdn.net/wp-content/uploads/sites/2/2015/10/silent1.jpg',
-      "name": 'Silent Hills',
-    },
-    {
-      "image": 'https://media.vandal.net/i/1200x630/11-2021/2021111012201145_1.jpg',
-      "name": 'Forza Horizon 5',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://www.lavanguardia.com/files/og_thumbnail/uploads/2021/09/02/6130d99519f60.png',
-      "name": 'Roblox',
-    },
-    {
-      "image": 'https://articles-images.sftcdn.net/wp-content/uploads/sites/2/2015/10/silent1.jpg',
-      "name": 'Silent Hills',
-    },
-    {
-      "image": 'https://media.vandal.net/i/1200x630/11-2021/2021111012201145_1.jpg',
-      "name": 'Forza Horizon 5',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-    {
-      "image": 'https://www.lavanguardia.com/files/og_thumbnail/uploads/2021/09/02/6130d99519f60.png',
-      "name": 'Roblox',
-    },
-    {
-      "image": 'https://articles-images.sftcdn.net/wp-content/uploads/sites/2/2015/10/silent1.jpg',
-      "name": 'Silent Hills',
-    },
-    {
-      "image": 'https://media.vandal.net/i/1200x630/11-2021/2021111012201145_1.jpg',
-      "name": 'Forza Horizon 5',
-    },
-    {
-      "image": 'https://compass-ssl.xbox.com/assets/9c/94/9c944d9c-7ef1-4b46-9f68-9b02966d3993.jpg?n=Halo-Infinite_GLP-Page-Hero-0_1083x609.jpg',
-      "name": 'Halo Infinite',
-    },
-  ];
- 
+class _ListViewCustomState extends State<ListViewCustom> {
+
+  List gamesList = [];
+
  @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
+
+  DatabaseReference databaseReference = FirebaseDatabase.instance.ref('/');
+  final mygames = databaseReference.onValue.listen((event) {
+    final data = event.snapshot.value as Map;
+    final gamesInfo = data['games'];
+    final games = gamesInfo.keys.toList();
+    final _games = [];
+    for (var i = 0 ; i < games.length; i++) {
+      _games.add({
+        'name': games[i], 
+        'image': gamesInfo[games[i]]['image'],
+        'description': gamesInfo[games[i]]['description']
+      });
+    }
+    setState(() => gamesList = _games);
+  }
+  );
+
   return Scaffold(
     appBar: AppBar(
       title: const Text("Videogames list")
     ),
     body: ListView.builder(
-      itemCount: _games.length,
+      itemCount: gamesList.length,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (BuildContext context, int index) { 
         return ListTile(
           leading: CircleAvatar(
-            backgroundImage: Image.network(_games[index]["image"]!).image,
+            backgroundImage: Image.network(gamesList[index]["image"]!).image,
           ),
-          title: Text(_games[index]["name"]!)
+          title: Text(gamesList[index]["name"]!),
+          onTap: () => showDialog<Image>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: Text(gamesList[index]["name"]),
+              content: Wrap(
+                spacing: 10.0,
+                runSpacing: 20.0,
+                children: [
+                  Image(image: Image.network(gamesList[index]["image"]).image),
+                  Text(gamesList[index]["description"])
+                ],
+              )
+            )
+          ),
         );
       },
     ),
