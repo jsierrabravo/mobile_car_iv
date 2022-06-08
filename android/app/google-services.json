@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "166154949092",
+    "project_id": "mobilecariv",
+    "storage_bucket": "mobilecariv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166154949092:android:90fc62136ffd013de0b7f1",
+        "android_client_info": {
+          "package_name": "com.example.myfirstproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166154949092-igdfm6ndo0nkb1bvb56evmf1bavgsoq9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKJqVX7ZpfY-NSv-jVPXFA8gOLOtygDx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166154949092-igdfm6ndo0nkb1bvb56evmf1bavgsoq9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

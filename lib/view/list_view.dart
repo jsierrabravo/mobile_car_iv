@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import '../database/database.dart';
 
 class ListViewCustom extends StatelessWidget {
  
   ListViewCustom({Key? key}) : super(key: key);
+
+  final firebaseData = CallFirebase().callDatabase();
 
   final List<Map<String, String>> _games = [
     {
