@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
+
+import '../Entities/game.dart';
+import '../Entities/response_firebase.dart';
+import '../domain/firebase_connection.dart';
 
 class ListViewCustom extends StatefulWidget {
  
@@ -11,27 +14,25 @@ class ListViewCustom extends StatefulWidget {
 
 class _ListViewCustomState extends State<ListViewCustom> {
 
-  List gamesList = [];
+  List<Game> gamesList = [];
+  FirebaseConnection firebaseConnection = FirebaseConnection(); 
+  late ResponseFirebase responseFirebase;
+
+  Future<void> getFirebaseData() async {
+    final data = await firebaseConnection.getData('games');
+    final responseFirebase = ResponseFirebase.fromJson(data);
+    setState(() => gamesList = responseFirebase.response!);
+
+  }
 
  @override
   Widget build(BuildContext context) {
 
-  DatabaseReference databaseReference = FirebaseDatabase.instance.ref('/');
-  final mygames = databaseReference.onValue.listen((event) {
-    final data = event.snapshot.value as Map;
-    final gamesInfo = data['games'];
-    final games = gamesInfo.keys.toList();
-    final _games = [];
-    for (var i = 0 ; i < games.length; i++) {
-      _games.add({
-        'name': games[i], 
-        'image': gamesInfo[games[i]]['image'],
-        'description': gamesInfo[games[i]]['description']
-      });
+    if (gamesList.length == 0) {
+      getFirebaseData();
     }
-    setState(() => gamesList = _games);
-  }
-  );
+    
+    // print(gamesList.length);
 
   return Scaffold(
     appBar: AppBar(
@@ -43,19 +44,19 @@ class _ListViewCustomState extends State<ListViewCustom> {
       itemBuilder: (BuildContext context, int index) { 
         return ListTile(
           leading: CircleAvatar(
-            backgroundImage: Image.network(gamesList[index]["image"]!).image,
+            backgroundImage: Image.network(gamesList[index].image!).image,
           ),
-          title: Text(gamesList[index]["name"]!),
+          title: Text(gamesList[index].name!),
           onTap: () => showDialog<Image>(
             context: context,
             builder: (BuildContext context) => AlertDialog(
-              title: Text(gamesList[index]["name"]),
+              title: Text(gamesList[index].name!),
               content: Wrap(
                 spacing: 10.0,
                 runSpacing: 20.0,
                 children: [
-                  Image(image: Image.network(gamesList[index]["image"]).image),
-                  Text(gamesList[index]["description"])
+                  Image(image: Image.network(gamesList[index].image!).image),
+                  Text(gamesList[index].description!)
                 ],
               )
             )
