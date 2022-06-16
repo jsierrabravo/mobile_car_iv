@@ -28,11 +28,11 @@ class _ListViewCustomState extends State<ListViewCustom> {
  @override
   Widget build(BuildContext context) {
 
-    if (gamesList.length == 0) {
-      getFirebaseData();
-    }
-    
-    // print(gamesList.length);
+    getFirebaseData();
+
+    // if (gamesList.length == 0) {
+    //   getFirebaseData();
+    // }
 
   return Scaffold(
     appBar: AppBar(
