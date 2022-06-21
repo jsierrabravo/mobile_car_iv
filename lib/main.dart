@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myfirstproject/view/list_view.dart';
+import 'package:myfirstproject/view/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
@@ -16,9 +16,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: ListViewCustom(),
-          
+      home: Splash(),
     );
   }
-  
 }

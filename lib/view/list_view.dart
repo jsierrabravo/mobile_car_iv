@@ -28,17 +28,13 @@ class _ListViewCustomState extends State<ListViewCustom> {
  @override
   Widget build(BuildContext context) {
 
-    if (gamesList.length == 0) {
+    if (gamesList.isEmpty) {
       getFirebaseData();
     }
     
     // print(gamesList.length);
 
-  return Scaffold(
-    appBar: AppBar(
-      title: const Text("Videogames list")
-    ),
-    body: ListView.builder(
+  return ListView.builder(
       itemCount: gamesList.length,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (BuildContext context, int index) { 
@@ -63,7 +59,6 @@ class _ListViewCustomState extends State<ListViewCustom> {
           ),
         );
       },
-    ),
-  );
+    );
  }
 }
